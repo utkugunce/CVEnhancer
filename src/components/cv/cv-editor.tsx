@@ -40,7 +40,8 @@ export function CVEditor({ initialText, onReset }: CVEditorProps) {
             setAnalysis(result);
         } catch (error) {
             console.error(error);
-            alert('Analysis failed. Please try again.');
+            const errorMessage = error instanceof Error ? error.message : 'Analysis failed';
+            alert(errorMessage);
         } finally {
             setIsAnalyzing(false);
         }

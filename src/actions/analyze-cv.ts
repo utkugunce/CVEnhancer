@@ -35,6 +35,8 @@ export async function analyzeCV(text: string, provider: AIProvider = 'openai') {
         return object;
     } catch (error) {
         console.error('Error analyzing CV:', error);
-        throw new Error('Failed to analyze CV. Please try again.');
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        console.error('Error analyzing CV:', error);
+        throw new Error(`Analysis failed: ${errorMessage}`);
     }
 }
