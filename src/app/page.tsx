@@ -6,12 +6,14 @@ import { Button } from '@/components/ui/button';
 import { CVEditor } from '@/components/cv/cv-editor';
 
 export default function Home() {
+  // null = initial state (show upload)
+  // '' or string = editor state
   const [cvText, setCvText] = useState<string | null>(null);
 
   return (
     <main className="flex min-h-screen flex-col items-center p-8 lg:p-24 bg-background text-foreground">
       <div className="z-10 w-full max-w-7xl items-center justify-between text-sm flex-col space-y-8">
-        {!cvText && (
+        {cvText === null && (
           <div className="text-center space-y-4 mb-12">
             <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
               CV Improver AI
@@ -22,7 +24,7 @@ export default function Home() {
           </div>
         )}
 
-        {!cvText ? (
+        {cvText === null ? (
           <div className="flex flex-col items-center gap-4 w-full max-w-lg">
             <FileUpload onUploadComplete={setCvText} />
             <div className="relative w-full text-center">
