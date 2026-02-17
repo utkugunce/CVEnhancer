@@ -31,8 +31,8 @@ export const openai = createOpenAI({
 
 export const google = createGoogleGenerativeAI({
     apiKey: googleApiKey || '',
-    // @ts-ignore - The google provider accepts fetch but types might be strict
-    fetch: customFetch,
+    // Only use custom fetch in development to bypass local SSL issues
+    fetch: process.env.NODE_ENV === 'development' ? customFetch : undefined,
 });
 
 export type AIProvider = 'openai' | 'google';
