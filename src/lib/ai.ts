@@ -32,7 +32,7 @@ export const openai = createOpenAI({
 export const google = createGoogleGenerativeAI({
     apiKey: googleApiKey || '',
     // Only use custom fetch in development to bypass local SSL issues
-    fetch: process.env.NODE_ENV === 'development' ? customFetch : undefined,
+    fetch: process.env.NODE_ENV === 'development' ? (customFetch as any) : undefined,
 });
 
 export type AIProvider = 'openai' | 'google';
